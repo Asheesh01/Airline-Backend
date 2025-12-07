@@ -1,12 +1,11 @@
 const { error } = require('cli');
 const { AirplanceServices } = require('../services');
   console.log("Inside Airplane controller");
+  console.log("hii i am here")
 const { StatusCodes } = require('http-status-codes');
 async function CreateAirplane(req, res) {
     try {
-      
         const response = await AirplanceServices.CreateAiplane({
-
              modelNumber: req.body.modelNumber,
              capacity: req.body.capacity
         });
