@@ -1,12 +1,12 @@
-const express=require('express');
-const {ServerConfig,Logger}=require('./config');
-const apiRoutes=require('./routes/index');
-const app=express();
+const express = require('express');
+const { ServerConfig, Logger } = require('./config');
+const apiRoutes = require('./routes/index');
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api',apiRoutes);
+app.use('/api', apiRoutes);
 
-app.listen(ServerConfig,() => {
+app.listen(ServerConfig, () => {
     console.log(`Successfuly Satarted the server on PORT : ${ServerConfig}`);
-    Logger.info("Ssadjidnd",{message:'nksnd  '});
+    Logger.info('Welcome in Server And ', { message: 'Server Started ' });
 })

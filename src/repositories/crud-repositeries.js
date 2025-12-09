@@ -1,6 +1,6 @@
 const { where } = require('sequelize');
 const { Logger } = require('../config');
-console.log("Inside crud repository ")
+
 class CrudRepository {
     constructor(model) {
         this.model = model;
@@ -9,7 +9,7 @@ class CrudRepository {
     async create(data) {
         try {
             
-            const response = await this.model.create(data);
+            const response = await this.model.create(data,{ validate: true });
             return response;
         } catch (error) {
             Logger.error("Something went wrong in the crud repo")

@@ -1,18 +1,23 @@
+const { StatusCodes } = require('http-status-codes');
 const { AirplaneRepository } = require('../repositories');
-
+const{AppError}=require('../utils/errors/app-error')
 const airplaneRepository = new AirplaneRepository();
 
-async function CreateAiplane(data) {
+async function CreateAirplane(data) {
     try {
-        console.log("Inside airpnae services")
+   
         const airplane = await airplaneRepository.create(data);
         return airplane;
     }
     catch (error) {
-        throw error;
+        console.log(error)
+        if(error.name=='ValidationError'){
+            throw new AppError('Cannot create a new Airplane Object',StatusCodes.INTERNAL_SERVER_ERROR);
+        }
+       throw new AppError('Cannot create a new Airplane Object',StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 module.exports = {
-    CreateAiplane
+    CreateAirplane
 }
