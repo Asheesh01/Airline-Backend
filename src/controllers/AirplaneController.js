@@ -1,4 +1,4 @@
-const { AirplanceServices } = require('../services');
+const { AirplaneServices } = require('../services');
 const { StatusCodes } = require('http-status-codes');
 const AppErrors=require("../utils/errors/app-error")
 const { SuccessREsponse, ErrorResponse } = require('../utils/common');
@@ -6,7 +6,7 @@ const airplane = require('../models/airplane');
 async function CreateAirplane(req, res) {
     try {
 
-        const airplane = await AirplanceServices.CreateAirplane({
+        const airplane = await AirplaneServices.CreateAirplane({
             modelNumber: req.body.modelNumber,
             capacity: req.body.capacity
 
@@ -15,17 +15,14 @@ async function CreateAirplane(req, res) {
         return res
             .status(StatusCodes.CREATED)
             .json(SuccessREsponse);
-    }
-     
+    } 
     catch (error) {
-
     if (error instanceof AppErrors) {
         ErrorResponse.error = 
         {
               statusCode: error.statusCode,
               explanation: error.explanation
-        }
-           
+        } 
         return res
             .status(error.statusCode)
             .json(ErrorResponse);
@@ -41,6 +38,23 @@ async function CreateAirplane(req, res) {
         .json(ErrorResponse);
 }
 }
+
+async function getAirplanes(req,res) {
+   try{
+        const airplanes1=await AirplaneServices.getAirplanes();
+        SuccessREsponse.data=airplanes1;
+         return res.
+        status(StatusCodes.OK)
+            .json(SuccessREsponse);
+    }catch(error){
+        ErrorResponse.error = error;
+         return res
+             .status(error.statusCode)
+            .json(ErrorResponse);
+       
+    }
+}
 module.exports = {
-    CreateAirplane
+    CreateAirplane,
+    getAirplanes
 }

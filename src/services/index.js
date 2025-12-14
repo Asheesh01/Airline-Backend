@@ -1,3 +1,3 @@
 module.exports={
-    AirplanceServices:require('./AirplaneService')
+    AirplaneServices:require('./AirplaneService')
 }

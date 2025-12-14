@@ -1,5 +1,3 @@
-
-
 const sucess = {
     success: true,
     message: "Successfully completed the request",

@@ -14,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Airplane.init({
-    sequelize,
+  
     modelNumber: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-    isAlphanumeric: {
-      msg: "Model number must contain only letters and numbers"
-    }
-  }
+        isAlphanumeric: {
+          msg: "Model number must contain only letters and numbers"
+        }
+      }
     },
     capacity: {
       type: DataTypes.INTEGER,
@@ -39,6 +39,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Airplane',
+     tableName: 'airplanes',
+      freezeTableName: true 
   });
   return Airplane;
 };
