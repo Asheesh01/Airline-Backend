@@ -49,7 +49,7 @@ async function getAirplanes(req,res) {
     }catch(error){
         ErrorResponse.error = error;
          return res
-             .status(error.statusCode)
+             .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
             .json(ErrorResponse);
        
     }
@@ -64,7 +64,7 @@ async function getAirplane(req,res) {
     }catch(error){
         ErrorResponse.error = error;
          return res
-             .status(error.statusCode)
+             .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
             .json(ErrorResponse);
        
     }
@@ -80,14 +80,31 @@ async function destroyAirplane(req,res) {
     }catch(error){
         ErrorResponse.error = error;
          return res
-             .status(error.statusCode)
+             .status(error.statusCode  || StatusCodes.INTERNAL_SERVER_ERROR)
             .json(ErrorResponse);
        
     }
+}
+
+async function updateairplane(req,res) {
+    try{
+        const update=await AirplaneServices.update(req.params.id);
+    SuccessREsponse.data;
+    return res.status(StatusCodes.OK)
+               .json(SuccessREsponse)
+    }catch(error){
+        ErrorResponse.error = error;
+         return res
+             .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+            .json(ErrorResponse);
+       
+    }
+    
 }
 module.exports = {
     CreateAirplane,
     getAirplanes,
     getAirplane,
-    destroyAirplane
+    destroyAirplane,
+    updateairplane
 }

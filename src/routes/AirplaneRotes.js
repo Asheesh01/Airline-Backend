@@ -8,4 +8,5 @@ const {AirplanesMiddleware}=require("../middleware")
  router.get('/',AirplaneController.getAirplanes);
  router.get('/',AirplaneController.getAirplanes);
 router.delete('/:id',AirplaneController.destroyAirplane);
+router.patch('/:id',AirplaneController.updateairplane)
  module.exports=router;
