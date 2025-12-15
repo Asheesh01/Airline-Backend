@@ -6,5 +6,6 @@ const {AirplanesMiddleware}=require("../middleware")
  router.post('/',AirplanesMiddleware.CreationMiddleware,AirplaneController.CreateAirplane);
   router.get('/:id',AirplaneController.getAirplane);
  router.get('/',AirplaneController.getAirplanes);
-
+ router.get('/',AirplaneController.getAirplanes);
+router.delete('/:id',AirplaneController.destroyAirplane);
  module.exports=router;
