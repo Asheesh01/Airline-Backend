@@ -88,7 +88,9 @@ async function destroyAirplane(req,res) {
 
 async function updateairplane(req,res) {
     try{
-        const update=await AirplaneServices.update(req.params.id);
+        const reqId=req.params.id;
+        const reqdata=req.body;
+        const update=await AirplaneServices.updates(reqId,reqdata);
     SuccessREsponse.data;
     return res.status(StatusCodes.OK)
                .json(SuccessREsponse)

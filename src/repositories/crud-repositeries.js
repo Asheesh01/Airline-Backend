@@ -38,9 +38,7 @@ class CrudRepository {
     }
     async update(id, data) {
         const response = await this.model.update(data, {
-            where: {
-                id: id
-            }
+            where: {id}
         });
          if (response[0] === 0) {
         throw new AppError(

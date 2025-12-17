@@ -59,9 +59,15 @@ async function destroyAirplane(id) {
     }
 }
 
-async function update(id) {
+async function updates(id,data) {
     try {
-        const response = await airplaneRepository.update(id);
+        const response = await airplaneRepository.update(id,data);
+         if (response[0] === 0) {
+    throw new AppError(
+      'City not found',
+      StatusCodes.NOT_FOUND
+    );
+  }
         return response;
     }
     catch (error) {
@@ -74,5 +80,5 @@ async function update(id) {
 }
 module.exports = {
     CreateAirplane,
-    getAirplanes, getAirplane, destroyAirplane, update
+    getAirplanes, getAirplane, destroyAirplane, updates
 };

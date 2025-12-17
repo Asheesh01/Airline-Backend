@@ -11,7 +11,7 @@ async function CreateCity(req, res) {
             status(StatusCodes.CREATED)
             .json(SuccessREsponse);
     } catch (error) {
-        
+
         ErrorResponse.error = error;
         return res
             .status(error.statusCode)
@@ -19,6 +19,43 @@ async function CreateCity(req, res) {
     }
 }
 
+async function citydestroy(req, res) {
+    try {
+        const response = await CityService.deleteCity(req.params.id);
+        SuccessREsponse.data=response
+        return res.
+                  status(StatusCodes.OK)
+                  .json(SuccessREsponse)
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+            .json(ErrorResponse);
+
+    }
+}
+
+async function updateCitys(req,res) {
+    try{
+         const CityId=req.params.id;
+        const data=req.body;
+        const response=await CityService.updateCity(CityId,data);
+    SuccessREsponse.data=response
+    return res.
+             status(StatusCodes.OK)
+             .json(SuccessREsponse)
+    }catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+            .json(ErrorResponse);
+
+    }
+    
+}
+
 module.exports = {
-    CreateCity
+    CreateCity,
+    citydestroy,
+    updateCitys
 }
