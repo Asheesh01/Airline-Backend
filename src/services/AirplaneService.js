@@ -52,7 +52,7 @@ async function destroyAirplane(id) {
         const airplane = await airplaneRepository.destroy(id);
         return airplane;
     } catch (error) {
-         if (error.StatusCodes == StatusCodes.NOT_FOUND) {
+        if (error.StatusCodes == StatusCodes.NOT_FOUND) {
             throw new AppError('The Status Code you requested to delete  is not Present')
         }
         throw new AppError('The Status Code you requested is not Present')
@@ -60,19 +60,19 @@ async function destroyAirplane(id) {
 }
 
 async function update(id) {
-   try{
-     const  response=await airplaneRepository.update(id);
-    return response;
-   }
-   catch (error) {
-         if (error.StatusCodes == StatusCodes.NOT_FOUND) {
+    try {
+        const response = await airplaneRepository.update(id);
+        return response;
+    }
+    catch (error) {
+        if (error.StatusCodes == StatusCodes.NOT_FOUND) {
             throw new AppError('The Status Code you requested to delete  is not Present')
         }
         throw new AppError('The Status Code you requested is not Present')
     }
-    
+
 }
 module.exports = {
     CreateAirplane,
-    getAirplanes, getAirplane,destroyAirplane,update
+    getAirplanes, getAirplane, destroyAirplane, update
 };

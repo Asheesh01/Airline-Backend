@@ -1,15 +1,16 @@
-const {CityRepository}=require('../repositories');
-const AppError=require('../utils/errors/app-error')
-const {StatusCodes}=require('http-status-codes')
+const { CityRepository } = require('../repositories');
+const AppError = require('../utils/errors/app-error')
+const { StatusCodes } = require('http-status-codes')
 
-const cityRepository=new CityRepository();
-async function CreateCity(data){
-    try{
-        const response=await cityRepository.create(data);
-    return response;
+const cityRepository = new CityRepository();
+async function CreateCity(data) {
+    try {
+        const response = await cityRepository.create(data);
+        return response;
     }
     catch (error) {
-        if (error.name === 'SequelizeValidationError') {
+        
+        if (error.name === 'SequelizeValidationError' || 'SequelizeUniqueConstraintError') {
             const explanation = error.errors.map(err => err.message);
             throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
@@ -21,6 +22,6 @@ async function CreateCity(data){
     }
 
 }
-module.exports={
+module.exports = {
     CreateCity
 }

@@ -1,11 +1,11 @@
-const CrudRepository=require('./crud-repositeries');
-const{city} =require('../models');
+const CrudRepository = require('./crud-repositeries');
+const { city } = require('../models');
 
 
-class cityRepository extends CrudRepository{
-    constructor(){
-         super(city)
-}
-
+class cityRepository extends CrudRepository {
+    constructor() {
+        super(city)
     }
-       module.exports=cityRepository;
+
+}
+module.exports = cityRepository;
