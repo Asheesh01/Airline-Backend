@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Airplane.init({
-  
     modelNumber: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,7 +32,6 @@ module.exports = (sequelize, DataTypes) => {
           args: [1000],
           msg: "Capacity cannot be more than 1000"
         }
-
       }
     }
   }, {

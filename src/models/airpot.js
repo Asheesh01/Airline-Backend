@@ -11,28 +11,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    }
+      this.belongsTo(models.city,{
+        foreignKey:cityId,
+        onDelete:'CASCADE',
+        onUpdate:'CASCADE'
+      });
+
+      }
+    
   }
   Airpot.init({
-    name:{
-type:DataTypes.STRING,
-allowNull:false,
-unique:true
-    } ,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
 
     code: {
-      type:DataTypes.STRING,
-      allowNull:false,
-      unique:true
-    },
-    address:{
       type: DataTypes.STRING,
-      allowNull:false,
-      unique:true
+      allowNull: false,
+      unique: true
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
     cityId: {
-     type: DataTypes.INTEGER,
-     allowNull:false
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,
