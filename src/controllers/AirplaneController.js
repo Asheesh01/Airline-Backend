@@ -1,6 +1,6 @@
 const { AirplaneServices } = require('../services');
 const { StatusCodes } = require('http-status-codes');
-const AppErrors=require("../utils/errors/app-error")
+const AppErrors = require("../utils/errors/app-error")
 const { SuccessREsponse, ErrorResponse } = require('../utils/common');
 const airplane = require('../models/airplane');
 async function CreateAirplane(req, res) {
@@ -11,97 +11,97 @@ async function CreateAirplane(req, res) {
             capacity: req.body.capacity
 
         });
-        SuccessREsponse.data = airplane 
+        SuccessREsponse.data = airplane
         return res
             .status(StatusCodes.CREATED)
             .json(SuccessREsponse);
-    } 
-    catch (error) {
-    if (error instanceof AppErrors) {
-        ErrorResponse.error = 
-        {
-              statusCode: error.statusCode,
-              explanation: error.explanation
-        } 
-        return res
-            .status(error.statusCode)
-            .json(ErrorResponse);
     }
+    catch (error) {
+        if (error instanceof AppErrors) {
+            ErrorResponse.error =
+            {
+                statusCode: error.statusCode,
+                explanation: error.explanation
+            }
+            return res
+                .status(error.statusCode)
+                .json(ErrorResponse);
+        }
 
-   
-     ErrorResponse.error = {
+
+        ErrorResponse.error = {
             statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
             explanation: "Something went wrong"
         };
-    return res
-        .status(StatusCodes.INTERNAL_SERVER_ERROR)
-        .json(ErrorResponse);
-}
-}
-
-async function getAirplanes(req,res) {
-   try{
-        const airplanes1=await AirplaneServices.getAirplanes();
-        SuccessREsponse.data=airplanes1;
-         return res.
-        status(StatusCodes.OK)
-            .json(SuccessREsponse);
-    }catch(error){
-        ErrorResponse.error = error;
-         return res
-             .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+        return res
+            .status(StatusCodes.INTERNAL_SERVER_ERROR)
             .json(ErrorResponse);
-       
-    }
-}
-async function getAirplane(req,res) {
-   try{
-        const airplanes1=await AirplaneServices.getAirplane(req.params.id);
-        SuccessREsponse.data=airplanes1;
-         return res.
-        status(StatusCodes.OK)
-            .json(SuccessREsponse);
-    }catch(error){
-        ErrorResponse.error = error;
-         return res
-             .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
-            .json(ErrorResponse);
-       
     }
 }
 
-async function destroyAirplane(req,res) {
-   try{
-        const airplanes1=await AirplaneServices.destroyAirplane(req.params.id);
-        SuccessREsponse.data=airplanes1;
-         return res.
-        status(StatusCodes.OK)
+async function getAirplanes(req, res) {
+    try {
+        const airplanes1 = await AirplaneServices.getAirplanes();
+        SuccessREsponse.data = airplanes1;
+        return res.
+            status(StatusCodes.OK)
             .json(SuccessREsponse);
-    }catch(error){
+    } catch (error) {
         ErrorResponse.error = error;
-         return res
-             .status(error.statusCode  || StatusCodes.INTERNAL_SERVER_ERROR)
+        return res
+            .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
             .json(ErrorResponse);
-       
+
+    }
+}
+async function getAirplane(req, res) {
+    try {
+        const airplanes1 = await AirplaneServices.getAirplane(req.params.id);
+        SuccessREsponse.data = airplanes1;
+        return res.
+            status(StatusCodes.OK)
+            .json(SuccessREsponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+            .json(ErrorResponse);
+
     }
 }
 
-async function updateairplane(req,res) {
-    try{
-        const reqId=req.params.id;
-        const reqdata=req.body;
-        const update=await AirplaneServices.updates(reqId,reqdata);
-    SuccessREsponse.data;
-    return res.status(StatusCodes.OK)
-               .json(SuccessREsponse)
-    }catch(error){
+async function destroyAirplane(req, res) {
+    try {
+        const airplanes1 = await AirplaneServices.destroyAirplane(req.params.id);
+        SuccessREsponse.data = airplanes1;
+        return res.
+            status(StatusCodes.OK)
+            .json(SuccessREsponse);
+    } catch (error) {
         ErrorResponse.error = error;
-         return res
-             .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+        return res
+            .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
             .json(ErrorResponse);
-       
+
     }
-    
+}
+
+async function updateairplane(req, res) {
+    try {
+        const reqId = req.params.id;
+        const reqdata = req.body;
+        const update = await AirplaneServices.updates(reqId, reqdata);
+        SuccessREsponse.data;
+        return res.status(StatusCodes.OK)
+            .json(SuccessREsponse)
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
+            .json(ErrorResponse);
+
+    }
+
 }
 module.exports = {
     CreateAirplane,

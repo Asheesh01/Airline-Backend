@@ -59,15 +59,15 @@ async function destroyAirplane(id) {
     }
 }
 
-async function updates(id,data) {
+async function updates(id, data) {
     try {
-        const response = await airplaneRepository.update(id,data);
-         if (response[0] === 0) {
-    throw new AppError(
-      'City not found',
-      StatusCodes.NOT_FOUND
-    );
-  }
+        const response = await airplaneRepository.update(id, data);
+        if (response[0] === 0) {
+            throw new AppError(
+                'City not found',
+                StatusCodes.NOT_FOUND
+            );
+        }
         return response;
     }
     catch (error) {

@@ -37,21 +37,21 @@ async function deleteCity(id) {
 }
 
 
-async function updateCity(id,data) {
-    try{
-        const response =await cityRepository.update(id,data);
-    return response;
-    }catch(error){
+async function updateCity(id, data) {
+    try {
+        const response = await cityRepository.update(id, data);
+        return response;
+    } catch (error) {
         console.log(error)
-        if(error.StatusCodes==StatusCodes.NOT_FOUND){
+        if (error.StatusCodes == StatusCodes.NOT_FOUND) {
             throw new AppError('The City is not present')
         }
         throw new AppError('The City you requested is not updated')
     }
-    
+
 }
 module.exports = {
-    CreateCity, 
+    CreateCity,
     deleteCity,
     updateCity
 }
