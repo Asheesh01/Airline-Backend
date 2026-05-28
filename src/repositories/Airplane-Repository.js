@@ -1,5 +1,5 @@
 const CrudRepository=require('./crud-repositeries');
-const{Airplane} =require('../models');
+const Airplane =require('../models/airplane');
 
 
 class AirplaneRepository extends CrudRepository{

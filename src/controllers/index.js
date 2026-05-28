@@ -1,5 +1,6 @@
 module.exports={
     AirplaneController:require('./AirplaneController'),
     InfoControler:require('./info-controller'),
-    CityController:require('./City-Controller')
+    CityController:require('./City-Controller'),
+    AirpotController:require('./AirpotController')
 }
