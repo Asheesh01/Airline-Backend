@@ -89,6 +89,6 @@ async function destroyAirpot(req, res) {
 module.exports = {
     CreateAirpot,
     getAirpots,
-    getAirpot
+    getAirpot,destroyAirpot
 
 }
